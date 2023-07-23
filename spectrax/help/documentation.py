@@ -1,42 +1,42 @@
-import graphics.font
-import graphics.display
-import graphics.locals
-import graphics.scroll
+import spectrax.font
+import spectrax.display
+import spectrax.locals
+import spectrax.scroll
 
 
 class simple:
     def __init__(self):
-        self.window=graphics.display.Window("simple doc")
+        self.window=spectrax.display.Window("simple doc")
         
         
         
-        self.doc=open("graphics/rescources/simple_doc.txt").read()
+        self.doc=open("spectrax/rescources/simple_doc.txt").read()
         
-        font="graphics/rescources/default.ttf"
+        font="spectrax/rescources/default.ttf"
         scalar=0.8
         
-        self.font=graphics.font.Font(
+        self.font=spectrax.font.Font(
             round(self.window.height//100*scalar),
             font=font,
-            back_end=graphics.locals.backends.PIL)
+            back_end=spectrax.locals.backends.PIL)
             
-        self.font_inter=graphics.font.Font(
+        self.font_inter=spectrax.font.Font(
             round(self.window.height//80*scalar),
             font=font,
-            back_end=graphics.locals.backends.PIL)
+            back_end=spectrax.locals.backends.PIL)
             
-        self.font_med=graphics.font.Font(
+        self.font_med=spectrax.font.Font(
             round(self.window.height//60*scalar),
             font=font,
-            back_end=graphics.locals.backends.PIL)
+            back_end=spectrax.locals.backends.PIL)
         
-        self.font_large=graphics.font.Font(
+        self.font_large=spectrax.font.Font(
             round(self.window.height//40*scalar),
             font=font,
-            back_end=graphics.locals.backends.PIL)
+            back_end=spectrax.locals.backends.PIL)
         
         self.textures=[]
-        self.scroll=graphics.scroll.VScroll(0,5000)
+        self.scroll=spectrax.scroll.VScroll(0,5000)
         self.scroll.set_friction(0.05)
         y=0
         scalar=1.2
