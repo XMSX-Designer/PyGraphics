@@ -5,6 +5,10 @@ PLATFORM=_p.system()
 if PLATFORM in ["Linux","Linux2"]:
     import graphics.osutil_android
     OSUTIL=graphics.osutil_android
+    print("this sofware does not support linux, only android")
+elif PLATFORM in ["Windows"]:
+    import graphics.osutil_windows
+    OSUTIL=graphics.osutil_windows
     
 else:
     OSUTIL=None
