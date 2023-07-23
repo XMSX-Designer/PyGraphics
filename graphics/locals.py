@@ -1,26 +1,42 @@
 import platform as _p
 
-PLATFORM=_p.system()
+# Determine the platform the code is running on (Linux, Windows, etc.)
+PLATFORM = _p.system()
 
-if PLATFORM in ["Linux","Linux2"]:
+# Initialize the OSUTIL variable based on the platform
+if PLATFORM in ["Linux", "Linux2"]:
     import graphics.osutil_android
-    OSUTIL=graphics.osutil_android
-    print("this sofware does not support linux, only android")
+    OSUTIL = graphics.osutil_android
+    print("This software does not support Linux, only Android.")
 elif PLATFORM in ["Windows"]:
     import graphics.osutil_windows
-    OSUTIL=graphics.osutil_windows
-    
+    OSUTIL = graphics.osutil_windows
 else:
-    OSUTIL=None
+    OSUTIL = None
 
-WINDOW_SIZE=OSUTIL.display.getsize()
+# Get the window size from the OSUTIL (if available)
+if OSUTIL:
+    WINDOW_SIZE = OSUTIL.display.getsize()
+else:
+    WINDOW_SIZE = None
 
-MOVIE_NO_AUDIO="no-audio"
-MOVIE_ALLOW_AUDIO="allow-audio"
-MOVIE_HIGH_DEF="hd"
-MOVIE_STANDARD_DEF="sd"
-MOVIE_LOW_DEF="ld"
-class backends:
-    PYGAME="pygame"
-    PIL="pil"
-    CV2="cv2"
+# Define constants for movie options
+MOVIE_NO_AUDIO = "no-audio"
+MOVIE_ALLOW_AUDIO = "allow-audio"
+MOVIE_HIGH_DEF = "hd"
+MOVIE_STANDARD_DEF = "sd"
+MOVIE_LOW_DEF = "ld"
+
+# Define constants for supported graphics backends
+class Backends:
+    """
+    Constants representing supported graphics backends.
+
+    Attributes:
+        PYGAME (str): Pygame backend.
+        PIL (str): PIL (Pillow) backend.
+        CV2 (str): OpenCV backend.
+    """
+    PYGAME = "pygame"
+    PIL = "pil"
+    CV2 = "cv2"
