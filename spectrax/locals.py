@@ -5,12 +5,12 @@ PLATFORM = _p.system()
 
 # Initialize the OSUTIL variable based on the platform
 if PLATFORM in ["Linux", "Linux2"]:
-    import graphics.osutil_android
-    OSUTIL = graphics.osutil_android
+    import spectrax.osutil_android
+    OSUTIL = spectrax.osutil_android
     print("This software does not support Linux, only Android.")
 elif PLATFORM in ["Windows"]:
-    import graphics.osutil_windows
-    OSUTIL = graphics.osutil_windows
+    import spectrax.osutil_windows
+    OSUTIL = spectrax.osutil_windows
 else:
     OSUTIL = None
 
