@@ -23,10 +23,10 @@ pip install spectrax
 ### Example 1: Creating a Basic Window
 
 ```python
-from spectrax import Window
+from spectrax import display
 
 # Create a window with the title "My Spectrax Window"
-window = Window("My Spectrax Window")
+window = display.Window("My Spectrax Window")
 
 # Clear the window and render
 window.clear()
@@ -36,13 +36,13 @@ window.render()
 ### Example 2: Drawing a Texture
 
 ```python
-from spectrax import Window, Texture
+from spectrax import display, texture
 
 # Create a window with the title "My Spectrax Window"
-window = Window("My Spectrax Window")
+window = display.Window("My Spectrax Window")
 
 # Load an image and create a texture
-texture = Texture(filename="path/to/image.png")
+texture = texture.Texture(filename="path/to/image.png")
 
 # Draw the texture on the window
 window.clear()
