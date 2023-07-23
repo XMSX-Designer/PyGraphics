@@ -60,4 +60,4 @@ We welcome contributions from the community! If you find any issues or have sugg
 
 ## License
 
-Spectrax is released under the [MIT License](https://github.com/your-username/spectrax/blob/main/LICENSE).
+Spectrax is released under the [MIT License](https://github.com/XMSX-Designer/spectrax/blob/main/LICENSE).
