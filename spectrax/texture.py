@@ -1,8 +1,8 @@
 # Import necessary libraries
 import sdl2
 import sdl2.ext
-import graphics.superclass
-import graphics.rect
+import spectrax.superclass
+import spectrax.rect
 import pygame as _p
 import PIL as _pil
 import numpy as _np
@@ -18,7 +18,7 @@ def _from_array(array):
     return sdl2.ext.image.pillow_to_surface(_pil.Image.fromarray(array))
 
 # Class "Texture" to represent different types of textures
-class Texture(graphics.superclass.MultipleConstructors):
+class Texture(spectrax.superclass.MultipleConstructors):
 
     # Constructor 1: Initialize an empty texture with the given size
     def __init1__(self, size):
@@ -31,7 +31,7 @@ class Texture(graphics.superclass.MultipleConstructors):
     # Constructor 3: Load a texture from a file and create a corresponding rectangle object
     def __init3__(self, filename):
         self._texture = sdl2.ext.image.load_img(filename)
-        self._rect = graphics.rect.Rect(0, 0, self._texture.w, self._texture.h)
+        self._rect = spectrax.rect.Rect(0, 0, self._texture.w, self._texture.h)
 
     # Constructor 4: Load a texture from a file with custom flags (not implemented)
     def __init4__(self, filename, flags):
@@ -43,7 +43,7 @@ class Texture(graphics.superclass.MultipleConstructors):
             raise TypeError(f"Argument 'surface' should be of type 'SDL_Surface', "
                             f"but received type '{type(surface).__name__}'.")
         self._texture = surface
-        self._rect = graphics.rect.Rect(0, 0, self._texture.w, self._texture.h)
+        self._rect = spectrax.rect.Rect(0, 0, self._texture.w, self._texture.h)
 
     # Constructor 6: Initialize a texture from a Pygame surface and create a corresponding rectangle object
     def __init6__(self, pgsurface):
@@ -51,7 +51,7 @@ class Texture(graphics.superclass.MultipleConstructors):
             raise TypeError(f"Argument 'pgsurface' should be of type 'pygame.Surface', "
                             f"but received type '{type(pgsurface).__name__}'.")
         self._texture = _from_pgsurface(pgsurface)
-        self._rect = graphics.rect.Rect(0, 0, self._texture.w, self._texture.h)
+        self._rect = spectrax.rect.Rect(0, 0, self._texture.w, self._texture.h)
 
     # Constructor 7: Initialize a texture from a NumPy array and create a corresponding rectangle object
     def __init7__(self, array):
@@ -59,7 +59,7 @@ class Texture(graphics.superclass.MultipleConstructors):
             raise TypeError(f"Argument 'array' should be of type 'numpy.array', "
                             f"but received type '{type(array).__name__}'.")
         self._texture = _from_array(array)
-        self._rect = graphics.rect.Rect(0, 0, self._texture.w, self._texture.h)
+        self._rect = spectrax.rect.Rect(0, 0, self._texture.w, self._texture.h)
 
     # Constructor 8: Initialize a texture from a PIL image and create a corresponding rectangle object
     def __init8__(self, pilimage):
@@ -67,7 +67,7 @@ class Texture(graphics.superclass.MultipleConstructors):
             raise TypeError(f"Argument 'pilimage' should be of type 'PIL.Image.Image', "
                             f"but received type '{type(pilimage).__name__}'.")
         self._texture = sdl2.ext.image.pillow_to_surface(pilimage)
-        self._rect = graphics.rect.Rect(0, 0, self._texture.w, self._texture.h)
+        self._rect = spectrax.rect.Rect(0, 0, self._texture.w, self._texture.h)
 
     # List of constructor signatures and their corresponding initializer methods
     __constructors__ = [
