@@ -1,7 +1,7 @@
 import sdl2
 import sdl2.ext
-import graphics.texture
-import graphics.locals
+import spectrax.texture
+import spectrax.locals
 
 import pygame as _p
 import PIL as _pil
@@ -19,12 +19,13 @@ class Font:
 
     Attributes:
         backend (str): The graphics backend used for font rendering.
+        backend (str): The graphics backend used for font rendering.
         _font (pygame.font.Font or PIL.ImageFont): The font object.
 
     Methods:
         render: Render the text using the selected font and backend.
     """
-    def __init__(self, px, font=None, back_end=graphics.locals.backends.PYGAME):
+    def __init__(self, px, font=None, back_end=spectrax.locals.backends.PYGAME):
         """
         Initialize the Font object with the specified font size and backend.
 
@@ -34,15 +35,15 @@ class Font:
             back_end (str): The graphics backend used for font rendering. Must be "pygame" or "pil".
         """
         self.backend = back_end
-        if back_end == graphics.locals.backends.PYGAME:
+        if back_end == spectrax.locals.backends.PYGAME:
             if font is None:
                 self._font = _p.font.SysFont(None, px)
             else:
                 self._font = _p.font.Font(font, px)
 
-        elif back_end == graphics.locals.backends.PIL:
+        elif back_end == spectrax.locals.backends.PIL:
             self.px = px
-            font = "graphics/resources/default.ttf" if font is None else font
+            font = "spectrax/resources/default.ttf" if font is None else font
             self._font = _pil_if.truetype(font, px)
 
     def render(self, *args, **kwargs):
@@ -58,13 +59,13 @@ class Font:
         Returns:
             graphics.texture.Texture: A Texture object containing the rendered text.
         """
-        if self.backend == graphics.locals.backends.PYGAME:
+        if self.backend == spectrax.locals.backends.PYGAME:
             text, color, alpha = args
             surface = self._font.render(str(text), alpha, color)
-            texture = graphics.texture.Texture(pgsurface=surface)
+            texture = spectrax.texture.Texture(pgsurface=surface)
             return texture
 
-        elif self.backend == graphics.locals.backends.PIL:
+        elif self.backend == spectrax.locals.backends.PIL:
             text, size, color, background_color = args
             text = str(text)
             width, height = size
@@ -77,5 +78,5 @@ class Font:
 
             draw.text((x, y), text, fill=color, font=self._font)
 
-            texture = graphics.texture.Texture(pilimage=image)
+            texture = spectrax.texture.Texture(pilimage=image)
             return texture
