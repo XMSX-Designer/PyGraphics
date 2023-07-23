@@ -4,12 +4,12 @@ import cv2 as _cv2
 import numpy as _np
 import requests as _req
 
-import graphics.locals
-import graphics.texture
-import graphics.superclass
+import spectrax.locals
+import spectrax.texture
+import spectrax.superclass
 
 
-class Movie(graphics.superclass.MultipleConstructors):
+class Movie(spectrax.superclass.MultipleConstructors):
     """
     A class representing a movie player.
 
@@ -107,7 +107,7 @@ class Movie(graphics.superclass.MultipleConstructors):
                 return self._last
             elif self._last is not None:
                 self._last._rendered.destroy()
-            texture = graphics.texture.Texture(array=frame)
+            texture = spectrax.texture.Texture(array=frame)
             texture._rendered = self._window.to_texture(texture._texture)
             sdl2.SDL_FreeSurface(texture._texture)
             self._last = texture
@@ -116,7 +116,7 @@ class Movie(graphics.superclass.MultipleConstructors):
             frame = self._webget()
             if self._last is not None:
                 self._last._rendered.destroy()
-            texture = graphics.texture.Texture(array=frame)
+            texture = spectrax.texture.Texture(array=frame)
             texture._rendered = self._window.to_texture(texture._texture)
             sdl2.SDL_FreeSurface(texture._texture)
             self._last = texture
