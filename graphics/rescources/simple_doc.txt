@@ -1,0 +1,173 @@
+Documentation for Classes and
+Functions
+
+Here's the documentation for the classes and functions used in the provided code:
+
+# Class: `graphics.display.Window`
+
+## Description:
+This class represents a window for displaying content using SDL2.
+
+## Constructors:
+1. `Window(title: str, size: Optional[Tuple[int, int]] = None)`
+   - Initializes a window with the specified title and optional size.
+   - Parameters:
+     - `title`: The title of the window.
+     - `size` (optional): The size of the window as a tuple `(width, height)`. If not provided, 
+     the default screen size will be used.
+
+## Functions:
+1. `clear() -> NoneType`
+   - Clears the window, removing any previously drawn content.
+
+2. `render() -> NoneType`
+   - Refreshes the screen, updating the displayed content.
+
+3. `draw(texture: graphics.texture.Texture) -> NoneType`
+   - Draws the specified texture object on the window.
+   - Parameters:
+     - `texture`: A `graphics.texture.Texture` object to be displayed on the window.
+
+4. `to_texture(surface: sdl2.SDL_Surface) -> sdl2.SDL_Texture`
+   - Converts an SDL Surface to an SDL Texture.
+   - Parameters:
+     - `surface`: An SDL Surface object to be converted.
+   - Returns:
+     - An SDL Texture object representing the converted surface.
+
+# Class: `graphics.movie.Movie`
+
+## Description:
+This class represents a movie player that can read frames from a video file and 
+display them on a given window.
+
+## Constructors:
+1. `Movie(window: graphics.display.Window, path: str, definition: int, audio: int)`
+   - Initializes a movie player with the given window, video file path, definition,
+        and audio settings.
+   - Parameters:
+     - `window`: The `graphics.display.Window` object where the movie will be displayed.
+     - `path`: The file path to the video file.
+     - `definition`: The movie definition. (Constant defined in `graphics.locals.MOVIE_STANDARD_DEF`)
+     - `audio`: Audio setting for the movie. (Constant defined in `graphics.locals.MOVIE_NO_AUDIO`)
+
+2. `Movie(window: graphics.display.Window, url: str, definition: int, audio: int)`
+   - Initializes a movie player with the given window, video URL, definition, and audio settings.
+   - Parameters:
+     - `window`: The `graphics.display.Window` object where the movie will be displayed.
+     - `url`: The URL of the video file.
+     - `definition`: The movie definition. (Constant defined in `graphics.locals.MOVIE_STANDARD_DEF`)
+     - `audio`: Audio setting for the movie. (Constant defined in `graphics.locals.MOVIE_NO_AUDIO`)
+
+## Functions:
+1. `read() -> graphics.texture.Texture`
+   - Reads a frame from the movie and returns it as a `graphics.texture.Texture` object.
+   - Returns:
+     - A `graphics.texture.Texture` object representing the current frame of the movie.
+
+# Class: `graphics.texture.Texture`
+
+## Description:
+This class represents a texture that can be drawn on a window.
+
+## Constructors:
+The `graphics.texture.Texture` class has multiple constructors that allow you to create a texture in different ways. The constructor is determined based on the type and number of arguments passed.
+
+1. `Texture(size: Tuple[int, int])`
+   - Initializes an empty texture with the specified size.
+   - Parameters:
+     - `size`: The size of the texture as a tuple `(width, height)`.
+
+2. `Texture(size: Tuple[int, int], flags: int)`
+   - Initializes an empty texture with the specified size and SDL texture flags.
+   - Parameters:
+     - `size`: The size of the texture as a tuple `(width, height)`.
+     - `flags`: SDL texture flags (e.g., `sdl2.SDL_TEXTUREACCESS_TARGET`).
+
+3. `Texture(filename: str)`
+   - Initializes a texture from an image file.
+   - Parameters:
+     - `filename`: The file path to the image file.
+
+4. `Texture(filename: str, flags: int)`
+   - Initializes a texture from an image file with SDL texture flags.
+   - Parameters:
+     - `filename`: The file path to the image file.
+     - `flags`: SDL texture flags (e.g., `sdl2.SDL_TEXTUREACCESS_TARGET`).
+
+5. `Texture(surface: sdl2.SDL_Surface)`
+   - Initializes a texture from an SDL surface.
+   - Parameters:
+     - `surface`: An SDL surface object.
+
+6. `Texture(pgsurface: Any)`
+   - Initializes a texture from a Pygame surface.
+   - Parameters:
+     - `pgsurface`: A Pygame surface object.
+
+7. `Texture(array: Any)`
+   - Initializes a texture from a NumPy array.
+   - Parameters:
+     - `array`: A NumPy array.
+
+8. `Texture(pilimage: Any)`
+   - Initializes a texture from a PIL (Pillow) image.
+   - Parameters:
+     - `pilimage`: A PIL (Pillow) image object.
+
+## Functions:
+1. `resize(scale: float) -> NoneType`
+   - Resizes the texture by the given scale factor.
+   - Parameters:
+     - `scale`: The scaling factor to resize the texture.
+
+2. `resize(scale_to_width: int) -> NoneType`
+   - Resizes the texture to the specified width while maintaining the aspect ratio.
+   - Parameters:
+     - `scale_to_width`: The width to which the texture should be resized.
+
+3. `resize(scale_to_height: int) -> NoneType`
+   - Resizes the texture to the specified height while maintaining the aspect ratio.
+   - Parameters:
+     - `scale_to_height`: The height to which the texture should be resized.
+
+4. `resize(set_size: Tuple[int, int]) -> NoneType`
+   - Resizes the texture to the specified size.
+   - Parameters:
+     - `set_size`: The new size of the texture as a tuple `(width, height)`.
+
+# Class: `graphics.font.Font`
+
+## Description:
+This class represents a font used for rendering text on the window.
+
+## Constructors:
+1. `Font(px: int, font: Optional[str] = None, backend: Optional[int] = None)`
+   - Initializes a font with the specified size, font file path (optional), and backend (optional).
+   - Parameters:
+     - `px`: The size of the font in pixels.
+     - `font` (optional): The path to a font file (e.g., TTF) to be used. If not provided, a default font will be used.
+     - `backend` (optional): The rendering backend for font rendering. Options are defined in `graphics.locals.backends` (e.g., `PYGAME`, `PIL`, `CV2`). If not provided, a suitable backend will be chosen automatically.
+
+## Functions:
+1. `render(text: str, color: List[int], anti_aliasing: bool) -> graphics.texture.Texture`
+   - Renders the specified text using the font and returns it as a `graphics.texture.Texture` object.
+   - Parameters:
+     - `text`: The text to be rendered.
+     - `color`: The color of the text as a list of RGB values, e.g., `[255, 0, 0]` for red.
+     - `anti
+
+_aliasing`: A boolean flag indicating whether to use anti-aliasing for smoother text rendering.
+   - Returns:
+     - A `graphics.texture.Texture` object representing the rendered text.
+
+2. `render(text: str, size: int, color: List[int], background_color: Optional[List[int]] = None) -> graphics.texture.Texture`
+   - Renders the specified text using the font with a specific size and returns it as a `graphics.texture.Texture` object.
+   - Parameters:
+     - `text`: The text to be rendered.
+     - `size`: The size of the font to be used for rendering.
+     - `color`: The color of the text as a list of RGB values, e.g., `[255, 0, 0]` for red.
+     - `background_color` (optional): The background color for the text as a list of RGB values. If not provided, the text will have a transparent background.
+   - Returns:
+     - A `graphics.texture.Texture` object representing the rendered text.
+
