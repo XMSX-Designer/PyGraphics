@@ -1,7 +1,7 @@
 import sdl2
 import sdl2.ext
 import ctypes
-from graphics import locals
+from spectrax import locals
 
 
 class _EventLoop:
