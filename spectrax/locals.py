@@ -16,7 +16,7 @@ else:
 
 # Get the window size from the OSUTIL (if available)
 if OSUTIL:
-    WINDOW_SIZE = OSUTIL.display.getsize()
+    WINDOW_SIZE = OSUTIL.Display.getsize()
 else:
     WINDOW_SIZE = None
 
