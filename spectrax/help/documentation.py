@@ -18,22 +18,22 @@ class simple:
         self.font=spectrax.font.Font(
             round(self.window.height//100*scalar),
             font=font,
-            back_end=spectrax.locals.backends.PIL)
+            back_end=spectrax.locals.Backends.PIL)
             
         self.font_inter=spectrax.font.Font(
             round(self.window.height//80*scalar),
             font=font,
-            back_end=spectrax.locals.backends.PIL)
+            back_end=spectrax.locals.Backends.PIL)
             
         self.font_med=spectrax.font.Font(
             round(self.window.height//60*scalar),
             font=font,
-            back_end=spectrax.locals.backends.PIL)
+            back_end=spectrax.locals.Backends.PIL)
         
         self.font_large=spectrax.font.Font(
             round(self.window.height//40*scalar),
             font=font,
-            back_end=spectrax.locals.backends.PIL)
+            back_end=spectrax.locals.Backends.PIL)
         
         self.textures=[]
         self.scroll=spectrax.scroll.VScroll(0,5000)
