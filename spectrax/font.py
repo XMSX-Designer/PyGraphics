@@ -25,7 +25,7 @@ class Font:
     Methods:
         render: Render the text using the selected font and backend.
     """
-    def __init__(self, px, font=None, back_end=spectrax.locals.backends.PYGAME):
+    def __init__(self, px, font=None, back_end=spectrax.locals.Backends.PYGAME):
         """
         Initialize the Font object with the specified font size and backend.
 
@@ -35,13 +35,13 @@ class Font:
             back_end (str): The graphics backend used for font rendering. Must be "pygame" or "pil".
         """
         self.backend = back_end
-        if back_end == spectrax.locals.backends.PYGAME:
+        if back_end == spectrax.locals.Backends.PYGAME:
             if font is None:
                 self._font = _p.font.SysFont(None, px)
             else:
                 self._font = _p.font.Font(font, px)
 
-        elif back_end == spectrax.locals.backends.PIL:
+        elif back_end == spectrax.locals.Backends.PIL:
             self.px = px
             font = "spectrax/resources/default.ttf" if font is None else font
             self._font = _pil_if.truetype(font, px)
@@ -59,13 +59,13 @@ class Font:
         Returns:
             graphics.texture.Texture: A Texture object containing the rendered text.
         """
-        if self.backend == spectrax.locals.backends.PYGAME:
+        if self.backend == spectrax.locals.Backends.PYGAME:
             text, color, alpha = args
             surface = self._font.render(str(text), alpha, color)
             texture = spectrax.texture.Texture(pgsurface=surface)
             return texture
 
-        elif self.backend == spectrax.locals.backends.PIL:
+        elif self.backend == spectrax.locals.Backends.PIL:
             text, size, color, background_color = args
             text = str(text)
             width, height = size
